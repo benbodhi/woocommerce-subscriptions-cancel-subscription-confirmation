@@ -8,10 +8,10 @@ jQuery(document).ready(function($) {
 		{
 			var subscription_id = $.urlParam('subscription_id', cancelURL);
 
-			var confirmDelete = prompt(ajax_object.promt_msg, "");
+			var confirmDelete = prompt(ajax_object.prompt_msg, "");
 			if (confirmDelete != null && confirmDelete != "") {
 				var data = {
-					'action': 'wcs_cancel_confirmation',
+					'action': 'bodhi_wcs_cancel_confirmation',
 					'subscription_id': subscription_id,
 					'reason_to_cancel': confirmDelete
 				};
@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
 		}
 		else
 		{
-			var confirmCancel = confirm(ajax_object.promt_msg);
+			var confirmCancel = confirm(ajax_object.prompt_msg);
 			if(confirmCancel == true)
 			{
 				window.location.href = cancelURL;
