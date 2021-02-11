@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
 			var confirmDelete = prompt(ajax_object.prompt_msg, "");
 			if (confirmDelete != null && confirmDelete != "") {
 				var data = {
-					'action': 'bodhi_wcs_cancel_confirmation',
+					'action': 'bodhi_wscsc_cancel_confirmation',
 					'subscription_id': subscription_id,
 					'reason_to_cancel': confirmDelete
 				};
