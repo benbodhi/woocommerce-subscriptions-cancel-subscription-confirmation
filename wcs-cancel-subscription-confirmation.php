@@ -99,7 +99,7 @@ function add_cancelation_settings($settings)
 
         array(
             'name'     		  => __('Cancellation Confirmation', 'bodhi-wcs-cancel-confirmation'),
-            'desc'            => __('Cancellation Confirmation', 'bodhi-wcs-cancel-confirmation'),
+            'desc'            => __('Activate cancellation confirmation daialogue', 'bodhi-wcs-cancel-confirmation'),
             'id'              => 'bodhi-wcs-ask-confirmation',
             'default'         => 'no',
             'type'            => 'checkbox',
