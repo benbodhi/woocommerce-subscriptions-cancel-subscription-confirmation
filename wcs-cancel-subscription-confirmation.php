@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: WooCommerce Subscriptions - Delete Cancel Subscription Confirmation
+* Plugin Name: WooCommerce Subscriptions - Cancel Subscription Confirmation
 * Plugin URI: #
 * Description: Adds a confirmation dialogue when cancelling a subscription.
 * Author: Benbodhi
