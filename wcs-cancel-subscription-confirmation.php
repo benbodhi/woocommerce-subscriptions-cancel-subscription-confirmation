@@ -98,12 +98,12 @@ function add_cancelation_settings($settings)
     $spliced_array = array_splice($settings, key($misc_section_end), 0, array(
 
         array(
-            'name'     		  => __('Ask to confirm on cancellation', 'bodhi-wcs-cancel-confirmation'),
-            'desc'            => __('Ask for Cancel confirmation', 'bodhi-wcs-cancel-confirmation'),
+            'name'     		  => __('Cancellation Confirmation', 'bodhi-wcs-cancel-confirmation'),
+            'desc'            => __('Cancellation Confirmation', 'bodhi-wcs-cancel-confirmation'),
             'id'              => 'bodhi-wcs-ask-confirmation',
             'default'         => 'no',
             'type'            => 'checkbox',
-            'desc_tip'        => __('Ask for the confirmation when the customer cancels a subscription from the My Account page.'),
+            'desc_tip'        => __('Ask for confirmation when the customer cancels a subscription from the My Account page.'),
             'checkboxgroup'   => 'start',
             'show_if_checked' => 'option',
         ),
