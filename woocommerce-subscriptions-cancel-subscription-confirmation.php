@@ -41,21 +41,21 @@ function bodhi_wcs_cancel_subscription_confirmation()
     
     $cancel_confirm_setting = false;
     
-    if (('yes' == get_option("bodhi-wcs-ask-confirmation", 'no')) || ('yes' == get_option('bodhi-wcs-cancel-confirmation', 'no'))) {
+    if (('yes' == get_option('bodhi-wcs-ask-confirmation', 'no')) || ('yes' == get_option('bodhi-wcs-cancel-confirmation', 'no'))) {
         $cancel_confirm_setting = true;
     }
     
-    $cancel_confirmation_required = apply_filters('bodhi_wcs_cancel_confirmation_promt_enabled', $cancel_confirm_setting);
+    $cancel_confirmation_required = apply_filters('bodhi_wcs_cancel_confirmation_prompt_enabled', $cancel_confirm_setting);
     
     if (is_account_page() && 'yes' == $cancel_confirmation_required) {
-        wp_register_script('bodhi-wcs-cancel-subscription-confirmation-script', plugin_dir_url(__FILE__) . 'bodhi-wcs-cancel-subscription-confirmation.js', array( 'jquery' ), '1.0.0', true);
+        wp_register_script('cancel-subscription-confirmation-script', plugin_dir_url(__FILE__) . 'woocommerce-subscriptions-cancel-subscription-confirmation.js', array( 'jquery' ), '1.0.0', true);
         
         if ('yes' == get_option('bodhi-wcs-cancel-confirmation', 'no')) {
-            $prompt_msg = apply_filters("bodhi_wcs_cancel_confirmation_prompt_msg", __("Are you sure you want to cancel your subscription?\nIf so, please type the reason why you want to cancel it here:", "bodhi-wcs-cancel-confirmation"));
+            $prompt_msg = apply_filters('bodhi_wcs_cancel_confirmation_prompt_msg', __('Are you sure you want to cancel your subscription?\nIf so, please type the reason why you want to cancel it here:', 'bodhi-wcs-cancel-confirmation'));
 
             $reason_required = true;
         } else {
-            $prompt_msg = apply_filters("bodhi_wcs_cancel_confirmation_prompt_msg", __("Are you sure you want to cancel your subscription?", "bodhi-wcs-cancel-confirmation"));
+            $prompt_msg = apply_filters('bodhi_wcs_cancel_confirmation_prompt_msg', __('Are you sure you want to cancel your subscription?', 'bodhi-wcs-cancel-confirmation'));
 
             $reason_required = false;
         }
@@ -63,11 +63,11 @@ function bodhi_wcs_cancel_subscription_confirmation()
         $script_atts = array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'prompt_msg' => $prompt_msg ,
-            'error_msg' => apply_filters("bodhi_wcs_cancel_confirmation_error_msg", __("There has been an error when saving the cancellation reason. Please try again.", "bodhi-wcs-cancel-confirmation")),
+            'error_msg' => apply_filters('bodhi_wcs_cancel_confirmation_error_msg', __('There has been an error when saving the cancellation reason. Please try again.', 'bodhi-wcs-cancel-confirmation')),
             'reason_required' => $reason_required,
         );
-        wp_localize_script('bodhi-wcs-cancel-subscription-confirmation-script', 'ajax_object', $script_atts);
-        wp_enqueue_script('bodhi-wcs-cancel-subscription-confirmation-script');
+        wp_localize_script('cancel-subscription-confirmation-script', 'ajax_object', $script_atts);
+        wp_enqueue_script('cancel-subscription-confirmation-script');
     }
 }
 add_action('wp_enqueue_scripts', 'bodhi_wcs_cancel_subscription_confirmation');
@@ -80,7 +80,7 @@ function bodhi_wcs_cancel_confirmation()
 
     $subscription = wc_get_order($subscription_id);
 
-    $note_id = $subscription->add_order_note(apply_filters("bodhi_wcs_cancel_confirmation_note_header", __("Cancellation Reason:", "bodhi-wcs-cancel-confirmation"))."<br /><b><i>".$reason_to_cancel."</i></b>");
+    $note_id = $subscription->add_order_note(apply_filters('bodhi_wcs_cancel_confirmation_note_header', __('Cancellation Reason:', 'bodhi-wcs-cancel-confirmation')).'<br /><b><i>'.$reason_to_cancel.'</i></b>');
 
     $subscription->save();
 
